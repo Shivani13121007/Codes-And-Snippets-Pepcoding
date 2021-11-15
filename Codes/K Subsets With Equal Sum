@@ -1,0 +1,73 @@
+**************************************************** Python Code ****************************************************
+
+def solution(arr,  vidx,  n,  k,  subsetSum,  ssssf,  ans) :
+    
+    # Base Case
+    if (vidx == n) :
+        if (ssssf == k) :
+            flag = True
+            i = 0
+            while (i < len(subsetSum) - 1) :
+                if (subsetSum[i] != subsetSum[i + 1]) :
+                    flag = False
+                    break
+                i += 1
+            if (flag == True) :
+                for e in ans :
+                    print(str(e) + " ", end ="")
+                print()
+        return
+    
+    # Logic
+    i = 0
+    while (i < len(ans)) :
+        if (len(ans[i]) > 0) :
+            ans[i].append(arr[vidx])
+            subsetSum[i] += arr[vidx]
+            solution(arr, vidx + 1, n, k, subsetSum, ssssf, ans)
+            del ans[i][len(ans[i]) - 1]
+            subsetSum[i] -= arr[vidx]
+        else :
+            ans[i].append(arr[vidx])
+            subsetSum[i] += arr[vidx]
+            solution(arr, vidx + 1, n, k, subsetSum, ssssf + 1, ans)
+            del ans[i][len(ans[i]) - 1]
+            subsetSum[i] -= arr[vidx]
+            break
+        i += 1
+
+
+
+
+# Main
+
+n = int(input())
+arr = [0] * (n)
+sum1= 0
+i = 0
+while (i < len(arr)) :
+    arr[i] = int(input())
+    sum1 += arr[i]
+    i += 1
+k = int(input())
+
+if (k == 1) :
+    print("[" ,end="")
+    i = 0
+    while (i < len(arr)) :
+        print(str(arr[i]) + ", ", end ="")
+        i += 1
+    print("]")
+
+# if there are more subsets than no. of elements in list or sum1 of all elements is not divisible by k
+if (k > n or sum1 % k != 0) :
+    print("-1")
+    
+subsetSum = [0] * (k)
+ans =  []
+i = 0
+while (i < k) :
+    ans.append( [])
+    i += 1
+
+solution(arr, 0, n, k, subsetSum, 0, ans)
