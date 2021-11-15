@@ -35,3 +35,60 @@ while (i < k) :
     i += 1
 
 solution(arr, 0, n, k, subsetSum, 0, ans)
+
+
+************************************************CPP Snippet*********************************************************
+
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+void solution(vector<int>& arr,int vidx, int n,int k,vector<int>& subsetSum,int ssssf,vector<vector<int>>& ans)
+{
+    //Write your code here
+}
+
+int main()
+{
+    
+    int n;
+    cin>>n;
+    
+    vector<int> arr(n,0);
+    int sum = 0;
+    for(int i=0;i<arr.size();i++)
+    {
+        cin>>arr[i];
+        sum+=arr[i];
+    }
+    
+    int k;
+    cin>>k;
+    
+    if(k==1)
+    {
+        cout<<"[";
+        for(int i=0;i<arr.size()-1;i++)
+        {
+            cout<<arr[i]<<", ";
+        }
+        cout<<arr[arr.size()-1];
+        cout<<"]";
+        return 0 ;
+    }
+    
+    if(k > n || sum % k != 0)
+    {
+        cout<<"-1";
+        return 0;
+    }
+    
+    vector<int> subsetSum(k,0);
+    
+    vector<vector<int>> ans(k);
+    
+    solution(arr,0,n,k,subsetSum,0,ans);
+  
+    return 0;
+}
