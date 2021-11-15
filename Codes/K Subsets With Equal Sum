@@ -71,3 +71,114 @@ while (i < k) :
     i += 1
 
 solution(arr, 0, n, k, subsetSum, 0, ans)
+
+
+
+
+
+**************************************************** CPP Code ****************************************************
+
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+void solution(vector<int>& arr,int vidx, int n,int k,vector<int>& subsetSum,int ssssf,vector<vector<int>>& ans)
+{
+    if(vidx == n)
+    {
+        if(ssssf == k)
+        {
+            bool flag = true;
+            for(int i=1;i<subsetSum.size();i++)
+            {
+                if(subsetSum[i] != subsetSum[i-1])
+                {
+                    flag = false;
+                    break;
+                }
+            } 
+            if(flag == true)
+                {
+                    for(int i=0;i<ans.size();i++)
+                    {
+                        cout<<"[";
+                        for(int j=0;j<ans[i].size()-1;j++)
+                        {
+                            
+                            cout<<ans[i][j]<<", ";
+                        }
+                        cout<<ans[i][ans[i].size()-1];
+                        cout<<"] ";
+                    }
+                    cout<<endl;
+                }
+        }
+        return;
+    }
+    
+
+    for(int i=0; i<ans.size(); i++)
+    {
+        vector<int>& e=ans[i];
+        if(e.size()>0)
+        {
+            e.push_back(arr[vidx]);
+            subsetSum[i] += arr[vidx];
+            solution(arr,vidx+1,n,k,subsetSum,ssssf,ans);
+            e.pop_back();
+            subsetSum[i] -= arr[vidx];
+        } else {
+            e.push_back(arr[vidx]);
+            subsetSum[i] += arr[vidx];
+            solution(arr,vidx+1,n,k,subsetSum,ssssf+1,ans);
+            e.pop_back();
+            subsetSum[i] -= arr[vidx];
+            break;
+        }
+    }
+}
+
+int main()
+{
+    
+    int n;
+    cin>>n;
+    
+    vector<int> arr(n,0);
+    int sum = 0;
+    for(int i=0;i<arr.size();i++)
+    {
+        cin>>arr[i];
+        sum+=arr[i];
+    }
+    
+    int k;
+    cin>>k;
+    
+    if(k==1)
+    {
+        cout<<"[";
+        for(int i=0;i<arr.size()-1;i++)
+        {
+            cout<<arr[i]<<", ";
+        }
+        cout<<arr[arr.size()-1];
+        cout<<"]";
+        return 0 ;
+    }
+    
+    if(k > n || sum % k != 0)
+    {
+        cout<<"-1";
+        return 0;
+    }
+    
+    vector<int> subsetSum(k,0);
+    
+    vector<vector<int>> ans(k);
+    
+    solution(arr,0,n,k,subsetSum,0,ans);
+  
+    return 0;
+}
