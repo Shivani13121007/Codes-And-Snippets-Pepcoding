@@ -1,0 +1,37 @@
+************************************************Python Snippet*********************************************************
+
+def solution(arr,  vidx,  n,  k,  subsetSum,  ssssf,  ans) :
+    
+    
+# Main
+
+n = int(input())
+arr = [0] * (n)
+sum1= 0
+i = 0
+while (i < len(arr)) :
+    arr[i] = int(input())
+    sum1 += arr[i]
+    i += 1
+k = int(input())
+
+if (k == 1) :
+    print("[" ,end="")
+    i = 0
+    while (i < len(arr)) :
+        print(str(arr[i]) + ", ", end ="")
+        i += 1
+    print("]")
+
+# if there are more subsets than no. of elements in list or sum1 of all elements is not divisible by k
+if (k > n or sum1 % k != 0) :
+    print("-1")
+    
+subsetSum = [0] * (k)
+ans =  []
+i = 0
+while (i < k) :
+    ans.append( [])
+    i += 1
+
+solution(arr, 0, n, k, subsetSum, 0, ans)
