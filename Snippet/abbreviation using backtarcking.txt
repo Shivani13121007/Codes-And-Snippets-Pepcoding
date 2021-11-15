@@ -1,0 +1,30 @@
+***************************** CPP Snippet ***************************************
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void solution(string str, string asf, int count, int pos)
+{
+    // Write your code here
+}
+
+int main()
+{
+    string str;
+    cin>>str;
+    
+    solution(str,"",0,0);
+    return 0;
+}
+
+
+
+***************************** Python Snippet ****************************
+
+
+s  = input()
+
+def solution(s,asf,count,pos):
+    # Write your code here
+    
+solution(s,"",0,0)

@@ -1,0 +1,56 @@
+***************************** CPP Code ***************************************
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void solution(string str, string asf, int count, int pos)
+{
+    if(pos==str.length())
+    {
+        if(count == 0)
+        cout<<asf<<endl;
+        else
+        cout<< asf+to_string(count)<<endl;
+        
+        return;
+        
+    }
+    string c = count>0 ? to_string(count): "";
+    
+    solution(str,asf+c+str.at(pos),0,pos+1);
+    solution(str,asf,count+1,pos+1);
+}
+
+int main()
+{
+    string str;
+    cin>>str;
+    
+    solution(str,"",0,0);
+    return 0;
+}
+
+
+
+
+
+
+
+***************************** Python Code ***************************************
+
+s  = input()
+
+def solution(s,asf,count,pos):
+    if(pos == len(s)):
+        if(count==0):
+            print(asf)
+        else:
+            print(asf+str(count))
+        return
+    
+    solution(s,asf+ str((count if count>0 else ""))+s[pos],0,pos+1)
+   
+    solution(s,asf,count+1,pos+1)
+    
+solution(s,"",0,0)
